@@ -49,9 +49,9 @@
     just = {
       enable = true;
       name = "just";
-      entry = "${pkgs.just}/bin/just --fmt --unstable -f";
+      entry = "${pkgs.just}/bin/just --fmt --unstable";
       language = "system";
-      pass_filenames = true;
+      pass_filenames = false;
       stages = [ "pre-commit" ];
       files = "(^|/)(justfile|Justfile)$";
     };
