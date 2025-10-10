@@ -6,7 +6,6 @@ default:
     @just --list
 
 # Variables
-
 # Aliases
 
 alias fmt := format
