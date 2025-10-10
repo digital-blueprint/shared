@@ -31,6 +31,7 @@
   # https://devenv.sh/git-hooks/
   git-hooks.hooks = {
     prettier.enable = true;
+    eslint.enable = true;
     shfmt.enable = true;
     nixfmt-rfc-style.enable = true;
     statix.enable = true;
