@@ -44,6 +44,17 @@
         edit = true; # Allow to edit the file if it is not formatted
       };
     };
+
+    # Custom pre-commit hook to format justfile
+    just = {
+      enable = true;
+      name = "just";
+      entry = "${pkgs.just}/bin/just --fmt --unstable -f";
+      language = "system";
+      pass_filenames = true;
+      stages = [ "pre-commit" ];
+      files = "(^|/)(justfile|Justfile)$";
+    };
   };
 
   # See full reference at https://devenv.sh/reference/options/
