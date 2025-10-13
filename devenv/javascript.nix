@@ -25,8 +25,11 @@
   '';
 
   # https://devenv.sh/git-hooks/
-  git-hooks.hooks = {
-    eslint.enable = true;
+  git-hooks = {
+    excludes = [ "./vendor" ];
+    hooks = {
+      eslint.enable = true;
+    };
   };
 
   # See full reference at https://devenv.sh/reference/options/
