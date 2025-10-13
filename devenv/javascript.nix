@@ -20,7 +20,6 @@
   ];
 
   enterShell = ''
-    echo "🛠️ DBP App Dev Shell"
     echo "📦 Node version: $(node --version | head -n 1)"
     echo "🏁 Using Chromium at ${pkgs.chromium.version} and Firefox at ${pkgs.firefox.version} for karma tests"
   '';
