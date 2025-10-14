@@ -22,6 +22,7 @@
     shfmt.enable = true;
     nixfmt-rfc-style.enable = true;
     statix.enable = true;
+    taplo.enable = true;
 
     # https://devenv.sh/reference/options/#git-hookshooksdeadnix
     # https://github.com/astro/deadnix
