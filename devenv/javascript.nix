@@ -11,8 +11,13 @@
   };
 
   # https://devenv.sh/supported-languages/javascript/
-  languages.javascript.enable = true;
-  languages.javascript.npm.enable = true;
+  languages = {
+    javascript = {
+      enable = true;
+      npm.enable = true;
+      package = pkgs.nodejs_24;
+    };
+  };
 
   # https://devenv.sh/packages/
   packages = with pkgs; [
