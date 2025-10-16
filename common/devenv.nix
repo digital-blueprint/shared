@@ -12,6 +12,17 @@
     just # task runner
   ];
 
+  # https://devenv.sh/tasks/
+  tasks = {
+    # To remove the old git commit hook
+    "cleanup:git-hooks" = {
+      exec = ''
+        rm -f .git/hooks/pre-commit.legacy
+      '';
+      before = [ "devenv:enterShell" ];
+    };
+  };
+
   files.".shared/common.just".text = builtins.readFile ./justfile;
 
   # https://devenv.sh/git-hooks/
