@@ -26,7 +26,7 @@
   ];
 
   # Shared justfile
-  files."vendor/.shared/justfile".text = builtins.readFile ./justfile;
+  files.".shared/dbp-app.just".text = builtins.readFile ./justfile;
 
   enterShell = ''
     echo "📦 Node version: $(node --version | head -n 1)"
