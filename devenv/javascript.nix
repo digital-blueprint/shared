@@ -39,6 +39,7 @@
       eslint.enable = true;
 
       i18next = {
+        enable = true;
         name = "i18next";
         description = "Check translations with i18next-cli";
         # If we try this without --dry-run then the hook hangs with high cpu load
