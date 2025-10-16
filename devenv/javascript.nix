@@ -32,8 +32,10 @@
 
   # https://devenv.sh/git-hooks/
   git-hooks = {
-    excludes = [ "./vendor" ];
+    excludes = [ "vendor" ];
     hooks = {
+      # Statix needs an extra ignore for the vendor folder
+      statix.settings.ignore = [ "vendor" ];
       eslint.enable = true;
     };
   };
