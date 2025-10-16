@@ -25,6 +25,9 @@
     fzf # fuzzy finder, for "just watch"
   ];
 
+  # Shared justfile
+  files."vendor/.shared/justfile".text = builtins.readFile "justfile";
+
   enterShell = ''
     echo "📦 Node version: $(node --version | head -n 1)"
     echo "🏁 Using Chromium at ${pkgs.chromium.version} and Firefox at ${pkgs.firefox.version} for karma tests"
