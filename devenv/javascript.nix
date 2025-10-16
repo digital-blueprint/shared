@@ -37,6 +37,18 @@
       # Statix needs an extra ignore for the vendor folder
       statix.settings.ignore = [ "vendor" ];
       eslint.enable = true;
+
+      i18next = {
+        name = "i18next";
+        description = "Check translations with i18next-cli";
+        # If we try this without --dry-run then the hook hangs with high cpu load
+        entry = "npx i18next-cli extract --ci --dry-run";
+        language = "system";
+        pass_filenames = false;
+        files = "(src/.*\\.js$|translation\\.json$)";
+        stages = [ "pre-commit" ];
+        require_serial = true;
+      };
     };
   };
 
