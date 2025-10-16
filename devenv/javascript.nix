@@ -15,7 +15,8 @@
     javascript = {
       enable = true;
       npm.enable = true;
-      package = pkgs.nodejs_24;
+      # i18next-parser is not compatible with Node.js 24
+      package = lib.mkDefault pkgs.nodejs_22;
     };
   };
 
