@@ -36,10 +36,13 @@
     nixfmt-rfc-style.enable = true;
     statix.enable = true;
     taplo.enable = true;
+
+    # https://jorisroovers.com/gitlint/latest/
     gitlint = {
       enable = true;
       # Ignore empty body and allow titles up to 100 characters
       # Using args didn't work, because of https://github.com/cachix/git-hooks.nix/issues/641
+      # If we need more config we could also pull in a shared config file and set it with "-C"
       entry = "${pkgs.gitlint}/bin/gitlint -c general.ignore=B6 -c title-max-length.line-length=100 --staged --msg-filename";
     };
 
