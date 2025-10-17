@@ -36,7 +36,12 @@
     nixfmt-rfc-style.enable = true;
     statix.enable = true;
     taplo.enable = true;
-    gitlint.enable = true;
+    gitlint = {
+      enable = true;
+      # Ignore empty body and allow titles up to 100 characters
+      # Using args didn't work, because of https://github.com/cachix/git-hooks.nix/issues/641
+      entry = "${pkgs.gitlint}/bin/gitlint -c general.ignore=B6 -c title-max-length.line-length=100 --staged --msg-filename";
+    };
 
     # https://devenv.sh/reference/options/#git-hookshooksdeadnix
     # https://github.com/astro/deadnix
