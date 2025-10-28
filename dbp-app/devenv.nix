@@ -6,8 +6,8 @@
 
 {
   env = {
-    CHROMIUM_BIN = lib.getExe pkgs.chromium;
-    FIREFOX_BIN = lib.getExe pkgs.firefox;
+    CHROMIUM_BIN = lib.mkDefault lib.getExe pkgs.chromium;
+    FIREFOX_BIN = lib.mkDefault lib.getExe pkgs.firefox;
   };
 
   # https://devenv.sh/supported-languages/javascript/
