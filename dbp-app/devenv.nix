@@ -3,15 +3,19 @@
   lib,
   ...
 }:
-
+let
+  inherit (lib)
+    mkDefault
+    ;
+in
 {
   # https://devenv.sh/supported-languages/javascript/
   languages = {
     javascript = {
-      enable = lib.mkDefault true;
-      npm.enable = lib.mkDefault true;
+      enable = mkDefault true;
+      npm.enable = mkDefault true;
       # i18next-parser is not compatible with Node.js 24
-      package = lib.mkDefault pkgs.nodejs_22;
+      package = mkDefault pkgs.nodejs_22;
     };
   };
 
@@ -33,10 +37,10 @@
     hooks = {
       # Statix needs an extra ignore for the vendor folder
       statix.settings.ignore = [ "vendor" ];
-      eslint.enable = true;
+      eslint.enable = mkDefault true;
 
       i18next = {
-        enable = true;
+        enable = mkDefault true;
         name = "i18next";
         description = "Check translations with i18next-cli";
         # If we try this without --dry-run then the hook hangs with high cpu load
