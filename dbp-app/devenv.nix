@@ -40,7 +40,8 @@ in
       eslint.enable = mkDefault true;
 
       i18next = {
-        enable = mkDefault true;
+        # Disabled by default as it is not reliable enough yet
+        enable = mkDefault false;
         name = "i18next";
         description = "Check translations with i18next-cli";
         # If we try this without --dry-run then the hook hangs with high cpu load
