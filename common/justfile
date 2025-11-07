@@ -15,4 +15,4 @@ add-git-blame-ignore-revs:
 # Format all files using pre-commit
 [group('linter')]
 format args='':
-    pre-commit run --all-files {{ args }}
+    prek run --all-files {{ args }}
