@@ -44,9 +44,8 @@ in
         enable = mkDefault false;
         name = "i18next";
         description = "Check translations with i18next-cli";
-        # If we try this without --dry-run then the hook hangs with high cpu load
-        # entry = "npx i18next-cli extract --ci --dry-run";
-        entry = "npx i18next-cli extract --ci";
+        # Try "env TERM=dumb" to prevent i18next-cli of being stuck
+        entry = "env TERM=dumb npx i18next-cli extract --ci";
         language = "system";
         pass_filenames = false;
         files = "(src/.*\\.js$|translation\\.json$)";
