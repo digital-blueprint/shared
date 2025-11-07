@@ -26,44 +26,49 @@
   files.".shared/common.just".text = builtins.readFile ./justfile;
 
   # https://devenv.sh/git-hooks/
-  git-hooks.hooks = {
-    prettier = {
-      enable = lib.mkDefault true;
-      files = "\\.(js|json|md|yaml|yml)$";
-    };
+  git-hooks = {
+    # Let's try prek, for faster running and maybe preventing issues with i18next
+    package = pkgs.prek;
 
-    shfmt.enable = true;
-    nixfmt-rfc-style.enable = true;
-    statix.enable = true;
-    taplo.enable = true;
-
-    # https://jorisroovers.com/gitlint/latest/
-    gitlint = {
-      enable = true;
-      # Ignore empty body and allow titles up to 100 characters
-      # Using args didn't work, because of https://github.com/cachix/git-hooks.nix/issues/641
-      # If we need more config we could also pull in a shared config file and set it with "-C"
-      entry = "${pkgs.gitlint}/bin/gitlint -c general.ignore=B6 -c title-max-length.line-length=100 --staged --msg-filename";
-    };
-
-    # https://devenv.sh/reference/options/#git-hookshooksdeadnix
-    # https://github.com/astro/deadnix
-    deadnix = {
-      enable = true;
-      settings = {
-        edit = true; # Allow to edit the file if it is not formatted
+    hooks = {
+      prettier = {
+        enable = lib.mkDefault true;
+        files = "\\.(js|json|md|yaml|yml)$";
       };
-    };
 
-    # Custom pre-commit hook to format justfile
-    just = {
-      enable = true;
-      name = "just";
-      entry = "${pkgs.just}/bin/just --fmt --unstable";
-      language = "system";
-      pass_filenames = false;
-      stages = [ "pre-commit" ];
-      files = "(^|/)(justfile|Justfile)$";
+      shfmt.enable = true;
+      nixfmt-rfc-style.enable = true;
+      statix.enable = true;
+      taplo.enable = true;
+
+      # https://jorisroovers.com/gitlint/latest/
+      gitlint = {
+        enable = true;
+        # Ignore empty body and allow titles up to 100 characters
+        # Using args didn't work, because of https://github.com/cachix/git-hooks.nix/issues/641
+        # If we need more config we could also pull in a shared config file and set it with "-C"
+        entry = "${pkgs.gitlint}/bin/gitlint -c general.ignore=B6 -c title-max-length.line-length=100 --staged --msg-filename";
+      };
+
+      # https://devenv.sh/reference/options/#git-hookshooksdeadnix
+      # https://github.com/astro/deadnix
+      deadnix = {
+        enable = true;
+        settings = {
+          edit = true; # Allow to edit the file if it is not formatted
+        };
+      };
+
+      # Custom pre-commit hook to format justfile
+      just = {
+        enable = true;
+        name = "just";
+        entry = "${pkgs.just}/bin/just --fmt --unstable";
+        language = "system";
+        pass_filenames = false;
+        stages = [ "pre-commit" ];
+        files = "(^|/)(justfile|Justfile)$";
+      };
     };
   };
 
