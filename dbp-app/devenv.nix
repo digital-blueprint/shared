@@ -40,8 +40,7 @@ in
       eslint.enable = mkDefault true;
 
       i18next = {
-        # Disabled by default as it is not reliable enough yet
-        enable = mkDefault false;
+        enable = mkDefault true;
         name = "i18next";
         description = "Check translations with i18next-cli";
         # Try "env TERM=dumb" to prevent i18next-cli of being stuck
