@@ -81,3 +81,55 @@ check:
 [group('linter')]
 fix:
     npm run fix
+
+# Checkout main branch in a directory after checking for uncommitted changes
+[group('git')]
+checkout-main dir:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if [ ! -d "{{dir}}" ]; then
+        echo "Error: Directory '{{dir}}' does not exist"
+        exit 1
+    fi
+
+    # Check if it's a git repository (.git can be a directory or a file for submodules)
+    if [ ! -e "{{dir}}/.git" ]; then
+        echo "Error: '{{dir}}' is not a git repository"
+        exit 1
+    fi
+
+    cd "{{dir}}"
+
+    # Check for uncommitted changes (staged files)
+    if ! git diff --cached --quiet; then
+        echo "Error: There are staged changes in {{dir}}"
+        echo "Please commit or unstage them first"
+        git diff --cached --name-status
+        exit 1
+    fi
+
+    # Check for unstaged changes (modified files)
+    if ! git diff --quiet; then
+        echo "Error: There are unstaged changes in {{dir}}"
+        echo "Please commit or stash them first"
+        git diff --name-status
+        exit 1
+    fi
+
+    # Check for untracked files
+    if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        echo "Error: There are untracked files in {{dir}}"
+        echo "Please handle them first"
+        git ls-files --others --exclude-standard
+        exit 1
+    fi
+
+    echo "Repository is clean, checking out main branch..."
+    git checkout main
+    echo "Successfully checked out main branch in {{dir}}"
+
+# Checkout main branch for toolkit
+[group('git')]
+checkout-main-toolkit:
+    just checkout-main vendor/toolkit
