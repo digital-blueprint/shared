@@ -1,0 +1,8 @@
+build:
+    nix-build -E '((import <nixpkgs> {}).callPackage (import ./package.nix) { })' --show-trace
+
+run:
+    ./result/bin/i18next-cli
+
+edit-app:
+    cd ~/Code/_fork/nixpkgs || cd ~/Code/nixpkgs || cd ~/Code/tools/nixpkgs && kate ./pkgs/by-name/i1/i18next-cli/package.nix
