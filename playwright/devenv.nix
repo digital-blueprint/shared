@@ -13,7 +13,7 @@ in
   # https://devenv.sh/basics/
   env = {
     # Use the Playwright browsers installed by nix package for unit tests
-    CHROMIUM_BIN = lib.mkDefault "${pkgs.playwright.browsers}/chromium-${chromium-rev}/chrome-linux/chrome";
+    CHROMIUM_BIN = lib.mkDefault "${pkgs.playwright.browsers}/chromium-${chromium-rev}/chrome-linux64/chrome";
     FIREFOX_BIN = lib.mkDefault "${pkgs.playwright.browsers}/firefox-${firefox-rev}/firefox/firefox";
   };
 
