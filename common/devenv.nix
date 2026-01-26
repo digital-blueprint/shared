@@ -37,7 +37,7 @@
       };
 
       shfmt.enable = true;
-      nixfmt-rfc-style.enable = true;
+      nixfmt.enable = true;
       statix.enable = true;
       taplo.enable = true;
 
