@@ -16,3 +16,8 @@ add-git-blame-ignore-revs:
 [group('linter')]
 format args='':
     prek run --all-files {{ args }}
+
+# Remove legacy git hooks
+[group('git')]
+remove-legacy-git-hooks:
+    rm -rf .git/hooks/*.legacy
