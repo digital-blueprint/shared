@@ -4,6 +4,7 @@
 # Aliases
 
 alias fmt := format
+alias legacy-git-hooks-remove := remove-legacy-git-hooks
 
 # Add git commit hashes to the .git-blame-ignore-revs file
 [group('linter')]
