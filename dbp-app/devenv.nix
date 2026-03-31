@@ -14,8 +14,8 @@ in
     javascript = {
       enable = mkDefault true;
       npm.enable = mkDefault true;
-      # i18next-parser is not compatible with Node.js 24
-      package = mkDefault pkgs.nodejs_22;
+      # Node.js 24 for npm minimumReleaseAge
+      package = mkDefault pkgs.nodejs_24;
     };
   };
 
