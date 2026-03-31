@@ -12,18 +12,23 @@
     just # task runner
   ];
 
-  # https://devenv.sh/tasks/
-  tasks = {
-    # To remove the old git commit hook
-    "cleanup:git-hooks" = {
-      exec = ''
-        rm -f .git/hooks/pre-commit.legacy
-      '';
-      before = [ "devenv:enterShell" ];
-    };
-  };
-
   files.".shared/common.just".text = builtins.readFile ./justfile;
+
+  enterShell = ''
+    removed_legacy_hooks=0
+
+    for legacy_hook in .git/hooks/*.legacy; do
+      if [ -e "$legacy_hook" ]; then
+        rm -f "$legacy_hook"
+        removed_legacy_hooks=1
+        echo "Removed legacy git hook: $legacy_hook"
+      fi
+    done
+
+    if [ "$removed_legacy_hooks" -eq 1 ]; then
+      echo "Removed legacy git hook backups from .git/hooks."
+    fi
+  '';
 
   # https://devenv.sh/git-hooks/
   git-hooks = {
