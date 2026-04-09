@@ -15,7 +15,8 @@ in
       enable = mkDefault true;
       npm.enable = mkDefault true;
       # Node.js 24 for npm minimumReleaseAge
-      package = mkDefault pkgs.nodejs_24;
+      # But for npm >= 11 you need to use nodejs_25, otherwise you get "npm ERR! code EBADENGINE Unsupported engine"
+      package = mkDefault pkgs.nodejs_25;
     };
   };
 
