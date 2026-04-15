@@ -24,7 +24,7 @@ open-browser:
 
 # Kill any process listening on port 8001
 [group('dev')]
-kill-port-8001:
+kill:
     #!/usr/bin/env bash
     set -euo pipefail
 
@@ -68,7 +68,7 @@ watch:
         fi
 
         # Make sure there is no node process listening on port 8001 before starting the watch script
-        just kill-port-8001
+        just kill
 
         echo "Running: npm run $selected_script"
         npm run "$selected_script"
