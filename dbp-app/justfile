@@ -22,6 +22,19 @@ term: term-kill term-run
 open-browser:
     curl -s http://127.0.0.1:8001 > /dev/null && xdg-open http://127.0.0.1:8001 || xdg-open https://127.0.0.1:8001
 
+# Kill any process listening on port 8001
+[group('dev')]
+kill-port-8001:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    pids=$(lsof -tiTCP:8001 -sTCP:LISTEN || true)
+
+    if [[ -n "$pids" ]]; then
+        kill $pids
+        echo "Killed process listening on port 8001: $pids"
+    fi
+
 # Interactive npm watch script selector
 [group('dev')]
 watch:
@@ -53,6 +66,9 @@ watch:
         if command -v zellij &> /dev/null; then
             zellij action rename-pane "$full_text"
         fi
+
+        # Make sure there is no node process listening on port 8001 before starting the watch script
+        just kill-port-8001
 
         echo "Running: npm run $selected_script"
         npm run "$selected_script"
