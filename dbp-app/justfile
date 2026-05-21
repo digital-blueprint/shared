@@ -141,9 +141,9 @@ checkout-main dir:
         exit 1
     fi
 
-    echo "Repository is clean, checking out main branch..."
-    git checkout main
-    echo "Successfully checked out main branch in {{dir}}"
+    echo "Repository is clean, checking out latest main branch..."
+    git pull --ff-only origin main
+    echo "Successfully checked out latest main branch in {{dir}}"
 
 # Checkout main branch for toolkit
 [group('git')]
