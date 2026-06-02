@@ -14,9 +14,8 @@ in
     javascript = {
       enable = mkDefault true;
       npm.enable = mkDefault true;
-      # Node.js 24 for npm minimumReleaseAge
-      # But for npm >= 11 you need to use nodejs_25, otherwise you get "npm ERR! code EBADENGINE Unsupported engine"
-      package = mkDefault pkgs.nodejs_25;
+      # Node.js >=24.15.0 for npm minimumReleaseAge, so we need to rely on nixpkgs unstable for that, devenv rolling doesn't support that yet
+      package = mkDefault pkgs.nodejs_24;
     };
   };
 
