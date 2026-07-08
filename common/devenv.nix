@@ -4,6 +4,9 @@
   ...
 }:
 
+let
+  prettier = pkgs.callPackage ../_pkgs/prettier/package.nix { };
+in
 {
   # https://devenv.sh/packages/
   packages = with pkgs; [
@@ -38,6 +41,7 @@
     hooks = {
       prettier = {
         enable = lib.mkDefault true;
+        package = prettier;
         files = "\\.(js|json|md|yaml|yml)$";
       };
 
