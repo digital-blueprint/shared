@@ -15,6 +15,9 @@ in
     just # task runner
   ];
 
+  # Allow consumers of this shared module to pull from https://dbp-shared.cachix.org.
+  cachix.pull = [ "dbp-shared" ];
+
   files.".shared/common.just".text = builtins.readFile ./justfile;
 
   enterShell = ''

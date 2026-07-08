@@ -6,3 +6,6 @@ import "common/justfile"
 # By default, run the `--list` command
 default:
     @just --list
+
+push-pkgs:
+    devenv tasks run cachix:push:_pkgs
