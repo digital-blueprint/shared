@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   ...
 }:
 let
@@ -14,8 +13,6 @@ in
     javascript = {
       enable = mkDefault true;
       npm.enable = mkDefault true;
-      # For npm >= 11 you need to use nodejs_25
-      package = mkDefault pkgs.nodejs_25;
     };
   };
 
