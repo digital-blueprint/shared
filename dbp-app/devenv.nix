@@ -37,7 +37,7 @@ in
     hooks = {
       # Statix needs an extra ignore for the vendor folder
       statix.settings.ignore = [ "vendor" ];
-      eslint.enable = mkDefault true;
+      oxlint.enable = mkDefault true;
 
       i18next = {
         enable = mkDefault true;
