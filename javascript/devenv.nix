@@ -26,7 +26,7 @@ in
   # https://devenv.sh/git-hooks/
   git-hooks = {
     hooks = {
-      eslint.enable = mkDefault true;
+      oxlint.enable = mkDefault true;
     };
   };
 
