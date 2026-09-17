@@ -23,7 +23,12 @@ in
   # https://devenv.sh/git-hooks/
   git-hooks = {
     hooks = {
-      oxlint.enable = mkDefault true;
+      oxlint = {
+        enable = mkDefault true;
+
+        # Prevents Oxlint from throwing an error if it wants to pick up changes in the vendor, dist or test folder
+        args = [ "--no-error-on-unmatched-pattern" ];
+      };
     };
   };
 

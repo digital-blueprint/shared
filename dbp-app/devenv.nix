@@ -37,7 +37,13 @@ in
     hooks = {
       # Statix needs an extra ignore for the vendor folder
       statix.settings.ignore = [ "vendor" ];
-      oxlint.enable = mkDefault true;
+
+      oxlint = {
+        enable = mkDefault true;
+
+        # Prevents Oxlint from throwing an error if it wants to pick up changes in the vendor, dist or test folder
+        args = [ "--no-error-on-unmatched-pattern" ];
+      };
 
       i18next = {
         enable = mkDefault true;
